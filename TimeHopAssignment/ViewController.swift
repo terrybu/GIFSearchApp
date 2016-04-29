@@ -35,8 +35,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     let newGifImage = GIFImage(urlString: newGifURL)
                     self.gifImagesArray.append(newGifImage)
                 }
-                self.tableView.reloadData()
-                activityIndicator.stopAnimating()
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.tableView.reloadData()
+                    activityIndicator.stopAnimating()
+                })
             }
             catch {
                 print("json error: \(error)")
