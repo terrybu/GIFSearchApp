@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58B4E90CA8050FF45AC5FD9A /* Pods_TimeHopAssignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831ECBB2C1E5F384CBD9B417 /* Pods_TimeHopAssignment.framework */; };
 		D9322B1D1CD2CEFE0053BAC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9322B1C1CD2CEFE0053BAC7 /* AppDelegate.swift */; };
 		D9322B1F1CD2CEFE0053BAC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9322B1E1CD2CEFE0053BAC7 /* ViewController.swift */; };
 		D9322B221CD2CEFE0053BAC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9322B201CD2CEFE0053BAC7 /* Main.storyboard */; };
 		D9322B241CD2CEFE0053BAC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9322B231CD2CEFE0053BAC7 /* Assets.xcassets */; };
 		D9322B271CD2CEFE0053BAC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9322B251CD2CEFE0053BAC7 /* LaunchScreen.storyboard */; };
+		D9322B301CD2DA800053BAC7 /* GIFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9322B2F1CD2DA800053BAC7 /* GIFImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49B46B0B59B4A46448F3C522 /* Pods-TimeHopAssignment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeHopAssignment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeHopAssignment/Pods-TimeHopAssignment.debug.xcconfig"; sourceTree = "<group>"; };
+		831ECBB2C1E5F384CBD9B417 /* Pods_TimeHopAssignment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeHopAssignment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB118AD20F5A270198338468 /* Pods-TimeHopAssignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeHopAssignment.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeHopAssignment/Pods-TimeHopAssignment.release.xcconfig"; sourceTree = "<group>"; };
 		D9322B191CD2CEFE0053BAC7 /* TimeHopAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeHopAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9322B1C1CD2CEFE0053BAC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9322B1E1CD2CEFE0053BAC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,7 @@
 		D9322B231CD2CEFE0053BAC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9322B261CD2CEFE0053BAC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9322B281CD2CEFE0053BAC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9322B2F1CD2DA800053BAC7 /* GIFImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B4E90CA8050FF45AC5FD9A /* Pods_TimeHopAssignment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B3F249E016A44C284549FFB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				49B46B0B59B4A46448F3C522 /* Pods-TimeHopAssignment.debug.xcconfig */,
+				BB118AD20F5A270198338468 /* Pods-TimeHopAssignment.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ACD8F2F5055D7DA5D45DB16A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				831ECBB2C1E5F384CBD9B417 /* Pods_TimeHopAssignment.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D9322B101CD2CEFE0053BAC7 = {
 			isa = PBXGroup;
 			children = (
 				D9322B1B1CD2CEFE0053BAC7 /* TimeHopAssignment */,
 				D9322B1A1CD2CEFE0053BAC7 /* Products */,
+				2B3F249E016A44C284549FFB /* Pods */,
+				ACD8F2F5055D7DA5D45DB16A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +80,7 @@
 		D9322B1B1CD2CEFE0053BAC7 /* TimeHopAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				D9322B2E1CD2DA690053BAC7 /* Model */,
 				D9322B1C1CD2CEFE0053BAC7 /* AppDelegate.swift */,
 				D9322B1E1CD2CEFE0053BAC7 /* ViewController.swift */,
 				D9322B201CD2CEFE0053BAC7 /* Main.storyboard */,
@@ -64,6 +91,14 @@
 			path = TimeHopAssignment;
 			sourceTree = "<group>";
 		};
+		D9322B2E1CD2DA690053BAC7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D9322B2F1CD2DA800053BAC7 /* GIFImage.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9322B2B1CD2CEFE0053BAC7 /* Build configuration list for PBXNativeTarget "TimeHopAssignment" */;
 			buildPhases = (
+				AD426AE3FCB4ADF70532B617 /* Check Pods Manifest.lock */,
 				D9322B151CD2CEFE0053BAC7 /* Sources */,
 				D9322B161CD2CEFE0053BAC7 /* Frameworks */,
 				D9322B171CD2CEFE0053BAC7 /* Resources */,
+				CDC29EBD7443F0D5DBE9B6ED /* Embed Pods Frameworks */,
+				561D976786560E252E9BC135 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +168,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		561D976786560E252E9BC135 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TimeHopAssignment/Pods-TimeHopAssignment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD426AE3FCB4ADF70532B617 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CDC29EBD7443F0D5DBE9B6ED /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TimeHopAssignment/Pods-TimeHopAssignment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D9322B151CD2CEFE0053BAC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -137,6 +223,7 @@
 			files = (
 				D9322B1F1CD2CEFE0053BAC7 /* ViewController.swift in Sources */,
 				D9322B1D1CD2CEFE0053BAC7 /* AppDelegate.swift in Sources */,
+				D9322B301CD2DA800053BAC7 /* GIFImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +334,7 @@
 		};
 		D9322B2C1CD2CEFE0053BAC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49B46B0B59B4A46448F3C522 /* Pods-TimeHopAssignment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TimeHopAssignment/Info.plist;
@@ -258,6 +346,7 @@
 		};
 		D9322B2D1CD2CEFE0053BAC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB118AD20F5A270198338468 /* Pods-TimeHopAssignment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TimeHopAssignment/Info.plist;
@@ -286,6 +375,7 @@
 				D9322B2D1CD2CEFE0053BAC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

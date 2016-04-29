@@ -1,0 +1,6 @@
+framework module Pods_TimeHopAssignment {
+  umbrella header "Pods-TimeHopAssignment-umbrella.h"
+
+  export *
+  module * { export * }
+}
