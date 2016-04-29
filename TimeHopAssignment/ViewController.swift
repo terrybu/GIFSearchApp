@@ -74,17 +74,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let gifForRow = gifImagesArray[indexPath.row]
         let imageURLString = gifForRow.urlString
-        print("width " + gifForRow.width!)
-        print("height " + gifForRow.height!)
-
+//        print("width " + gifForRow.width!)
+//        print("height " + gifForRow.height!)
+        
+        cell.tag = indexPath.row
         Alamofire.request(.GET, imageURLString).responseData { (response) in
             if let data = response.data {
                 dispatch_async(dispatch_get_main_queue(),{
-                    cell.gifImageView.animateWithImageData(data)
+                    if cell.tag == indexPath.row {
+                        cell.gifImageView.animateWithImageData(data)
+                    }
                 })
             }
         }
-        
         return cell
     }
     
