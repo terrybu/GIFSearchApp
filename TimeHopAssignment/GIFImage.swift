@@ -10,9 +10,11 @@ import Foundation
 
 class GIFImage {
     
-    var urlString: String?
+    let urlString: String
+    var width: String?
+    var height: String?
     
-    init(urlString: String?) {
+    init(urlString: String) {
         self.urlString = urlString
     }
     

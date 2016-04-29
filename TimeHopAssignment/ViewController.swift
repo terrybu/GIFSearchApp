@@ -30,10 +30,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let json = JSON(str)
                 let jsonData = json["data"].arrayValue
                 for object:JSON in jsonData {
-                    let newGifURL = (object["images"]["fixed_height"]["url"]).stringValue
-                    print(newGifURL)
-                    let newGifImage = GIFImage(urlString: newGifURL)
-                    self.gifImagesArray.append(newGifImage)
+                    if let newGifURL = object["images"]["fixed_width"]["url"].string {
+                        print(newGifURL)
+                        let newGifImage = GIFImage(urlString: newGifURL)
+                        
+                        if let width = object["images"]["fixed_width"]["width"].string, height = object["images"]["fixed_width"]["height"].string {
+                            
+                            newGifImage.width = width
+                            newGifImage.height = height
+
+                        }
+                        
+                        self.gifImagesArray.append(newGifImage)
+                    }
+                    
                 }
                 dispatch_async(dispatch_get_main_queue(),{
                     self.tableView.reloadData()
@@ -61,9 +71,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TrendingTableViewCell
-        let imageURLString = gifImagesArray[indexPath.row].urlString
         
-        Alamofire.request(.GET, imageURLString!).responseData { (response) in
+        let gifForRow = gifImagesArray[indexPath.row]
+        let imageURLString = gifForRow.urlString
+        print("width " + gifForRow.width!)
+        print("height " + gifForRow.height!)
+
+        Alamofire.request(.GET, imageURLString).responseData { (response) in
             if let data = response.data {
                 dispatch_async(dispatch_get_main_queue(),{
                     cell.gifImageView.animateWithImageData(data)
@@ -76,7 +90,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //MARK: TableViewDelegate Protocol Methods
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
+        //I used heightForRow to accomodate different height of the Gifs although they have "fixed width"
+        let gifForRow = gifImagesArray[indexPath.row]
+        if let n = NSNumberFormatter().numberFromString(gifForRow.height!) {
+            let cgFloat = CGFloat(n)
+//            print("this row has height of " + gifForRow.height!)
+            return cgFloat
+        }
+        return 44 //default
     }
 
     
