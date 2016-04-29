@@ -85,11 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-TimeHopAssignment/AFNetworking.framework"
+  install_framework "Pods-TimeHopAssignment/Alamofire.framework"
   install_framework "Pods-TimeHopAssignment/Gifu.framework"
   install_framework "Pods-TimeHopAssignment/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TimeHopAssignment/AFNetworking.framework"
+  install_framework "Pods-TimeHopAssignment/Alamofire.framework"
   install_framework "Pods-TimeHopAssignment/Gifu.framework"
   install_framework "Pods-TimeHopAssignment/SwiftyJSON.framework"
 fi

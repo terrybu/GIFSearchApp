@@ -14,6 +14,7 @@
 		D9322B241CD2CEFE0053BAC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9322B231CD2CEFE0053BAC7 /* Assets.xcassets */; };
 		D9322B271CD2CEFE0053BAC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9322B251CD2CEFE0053BAC7 /* LaunchScreen.storyboard */; };
 		D9322B301CD2DA800053BAC7 /* GIFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9322B2F1CD2DA800053BAC7 /* GIFImage.swift */; };
+		D9322B321CD2E5530053BAC7 /* TrendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9322B311CD2E5530053BAC7 /* TrendingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D9322B261CD2CEFE0053BAC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9322B281CD2CEFE0053BAC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9322B2F1CD2DA800053BAC7 /* GIFImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFImage.swift; sourceTree = "<group>"; };
+		D9322B311CD2E5530053BAC7 /* TrendingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				D9322B2E1CD2DA690053BAC7 /* Model */,
+				D9322B331CD2E5560053BAC7 /* View */,
 				D9322B1C1CD2CEFE0053BAC7 /* AppDelegate.swift */,
 				D9322B1E1CD2CEFE0053BAC7 /* ViewController.swift */,
 				D9322B201CD2CEFE0053BAC7 /* Main.storyboard */,
@@ -97,6 +100,14 @@
 				D9322B2F1CD2DA800053BAC7 /* GIFImage.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D9322B331CD2E5560053BAC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D9322B311CD2E5530053BAC7 /* TrendingTableViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9322B321CD2E5530053BAC7 /* TrendingTableViewCell.swift in Sources */,
 				D9322B1F1CD2CEFE0053BAC7 /* ViewController.swift in Sources */,
 				D9322B1D1CD2CEFE0053BAC7 /* AppDelegate.swift in Sources */,
 				D9322B301CD2DA800053BAC7 /* GIFImage.swift in Sources */,

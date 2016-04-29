@@ -10,10 +10,10 @@ import Foundation
 
 class GIFImage {
     
-    var url: String?
+    var urlString: String?
     
-    init(url: String?) {
-        self.url = url
+    init(urlString: String?) {
+        self.urlString = urlString
     }
     
 }

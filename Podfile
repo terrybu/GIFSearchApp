@@ -8,5 +8,6 @@ target 'TimeHopAssignment' do
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
     pod 'AFNetworking', '~> 3.0'
     pod 'Gifu'
+    pod ‘Alamofire’
 end
 

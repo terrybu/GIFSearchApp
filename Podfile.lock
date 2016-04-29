@@ -14,11 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Alamofire (3.3.1)
   - Gifu (1.0.1)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - Alamofire
   - Gifu
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -33,6 +35,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   Gifu: bf7a99fe9f20a1dc18c3cb4289aebc922a2ad419
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 

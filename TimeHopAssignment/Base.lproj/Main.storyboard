@@ -22,13 +22,35 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="KIf-y6-kAN">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="KIf-y6-kAN" customClass="TrendingTableViewCell" customModule="TimeHopAssignment" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KIf-y6-kAN" id="wPa-qT-8JB">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hll-08-Gan" customClass="AnimatableImageView" customModule="Gifu">
+                                                    <rect key="frame" x="8" y="0.0" width="131" height="79"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="82" id="0Fz-YZ-0Bv"/>
+                                                        <constraint firstAttribute="width" constant="131" id="suF-2I-3CR"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="0Fz-YZ-0Bv"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Hll-08-Gan" firstAttribute="leading" secondItem="wPa-qT-8JB" secondAttribute="leading" constant="8" id="6Ox-uy-OKu"/>
+                                                <constraint firstItem="Hll-08-Gan" firstAttribute="top" secondItem="wPa-qT-8JB" secondAttribute="top" id="Kqd-Rt-NoA"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hll-08-Gan" secondAttribute="bottom" id="X6t-sJ-Y4V"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="gifImageView" destination="Hll-08-Gan" id="EMb-yx-3QB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

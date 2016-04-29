@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -31,7 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 for object:JSON in jsonData {
                     let newGifURL = (object["images"]["fixed_height"]["url"]).stringValue
                     print(newGifURL)
-                    let newGifImage = GIFImage(url: newGifURL)
+                    let newGifImage = GIFImage(urlString: newGifURL)
                     self.gifImagesArray.append(newGifImage)
                 }
                 self.tableView.reloadData()
@@ -57,11 +58,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TrendingTableViewCell
+        let imageURLString = gifImagesArray[indexPath.row].urlString
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        
-        let imageURL = gifImagesArray[indexPath.row].url
-        cell.textLabel!.text = imageURL
+        Alamofire.request(.GET, imageURLString!).responseData { (response) in
+            if let data = response.data {
+                dispatch_async(dispatch_get_main_queue(),{
+                    cell.gifImageView.animateWithImageData(data)
+                })
+            }
+        }
         
         return cell
     }
@@ -72,8 +78,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
