@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  TimeHopAssignment
 //
 //  Created by Terry Bu on 4/28/16.
@@ -10,73 +10,58 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
-    var gifImagesArray = [GIFImage]()
+    var gifImagesArray: [GIFImage]?
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
         
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         activityIndicator.center = view.center
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-
-        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: "http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC")!, completionHandler: { (data, response, error) -> Void in
-            do{
-                let str = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! [String:AnyObject]
-                let json = JSON(str)
-                let jsonData = json["data"].arrayValue
-                for object:JSON in jsonData {
-                    if let newGifURL = object["images"]["fixed_width"]["url"].string {
-                        print(newGifURL)
-                        let newGifImage = GIFImage(urlString: newGifURL)
-                        
-                        if let width = object["images"]["fixed_width"]["width"].string, height = object["images"]["fixed_width"]["height"].string {
-                            
-                            newGifImage.width = width
-                            newGifImage.height = height
-
-                        }
-                        
-                        self.gifImagesArray.append(newGifImage)
-                    }
-                    
-                }
+        
+        GIFNetworkingService.sharedService.getTrendingImages { (success, returnedImagesArray) in
+            if success {
+                self.gifImagesArray = returnedImagesArray
                 dispatch_async(dispatch_get_main_queue(),{
                     self.tableView.reloadData()
                     activityIndicator.stopAnimating()
                 })
             }
-            catch {
-                print("json error: \(error)")
-            }
-        })
-        task.resume()
+        }
+
     }
     
     //MARK: TableViewDataSource Protocol Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if !gifImagesArray.isEmpty {
+        if gifImagesArray != nil {
             return 1
         }
         return 0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gifImagesArray.count
+        return gifImagesArray!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TrendingTableViewCell
         
-        let gifForRow = gifImagesArray[indexPath.row]
+        let gifForRow = gifImagesArray![indexPath.row]
+        cell.slugLabel.text = gifForRow.slug
+        
         let imageURLString = gifForRow.urlString
 //        print("width " + gifForRow.width!)
 //        print("height " + gifForRow.height!)
-        
         cell.tag = indexPath.row
         Alamofire.request(.GET, imageURLString).responseData { (response) in
             if let data = response.data {
@@ -92,12 +77,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //MARK: TableViewDelegate Protocol Methods
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        //I used heightForRow to accomodate different height of the Gifs although they have "fixed width"
-        let gifForRow = gifImagesArray[indexPath.row]
-        if let n = NSNumberFormatter().numberFromString(gifForRow.height!) {
-            let cgFloat = CGFloat(n)
-//            print("this row has height of " + gifForRow.height!)
-            return cgFloat
+        //I used heightForRow to accommodate different heights of the Gifs while they have "fixed width"
+        let gifForRow = gifImagesArray![indexPath.row]
+        
+        if let height = gifForRow.height {
+            if let n = NSNumberFormatter().numberFromString(height) {
+                let cgFloat = CGFloat(n)
+                print("this row has height of " + height)
+                return cgFloat
+            }
         }
         return 44 //default
     }
@@ -107,7 +95,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    }
 }
 

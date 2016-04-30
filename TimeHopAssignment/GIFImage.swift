@@ -13,6 +13,7 @@ class GIFImage {
     let urlString: String
     var width: String?
     var height: String?
+    var slug: String? 
     
     init(urlString: String) {
         self.urlString = urlString

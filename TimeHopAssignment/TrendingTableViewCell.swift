@@ -12,6 +12,6 @@ import Gifu
 class TrendingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var gifImageView: AnimatableImageView!
-    
+    @IBOutlet weak var slugLabel: UILabel!
 
 }

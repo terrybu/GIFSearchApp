@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TimeHopAssignment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="TimeHopAssignment" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,18 +22,18 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="KIf-y6-kAN" customClass="TrendingTableViewCell" customModule="TimeHopAssignment" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="120" id="KIf-y6-kAN" customClass="TrendingTableViewCell" customModule="TimeHopAssignment" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KIf-y6-kAN" id="wPa-qT-8JB">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hll-08-Gan" customClass="AnimatableImageView" customModule="Gifu">
-                                                    <rect key="frame" x="8" y="0.0" width="131" height="79"/>
+                                                    <rect key="frame" x="200" y="4" width="200" height="99"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="82" id="0Fz-YZ-0Bv"/>
-                                                        <constraint firstAttribute="width" constant="131" id="suF-2I-3CR"/>
+                                                        <constraint firstAttribute="width" constant="200" id="suF-2I-3CR"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -41,15 +41,33 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mf-QW-3p1" userLabel="slugLabel">
+                                                    <rect key="frame" x="281" y="103" width="38" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Hll-08-Gan" firstAttribute="leading" secondItem="wPa-qT-8JB" secondAttribute="leading" constant="8" id="6Ox-uy-OKu"/>
-                                                <constraint firstItem="Hll-08-Gan" firstAttribute="top" secondItem="wPa-qT-8JB" secondAttribute="top" id="Kqd-Rt-NoA"/>
-                                                <constraint firstAttribute="bottom" secondItem="Hll-08-Gan" secondAttribute="bottom" id="X6t-sJ-Y4V"/>
+                                                <constraint firstItem="Hll-08-Gan" firstAttribute="top" secondItem="wPa-qT-8JB" secondAttribute="top" constant="4" id="Kqd-Rt-NoA"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hll-08-Gan" secondAttribute="bottom" constant="16" id="X6t-sJ-Y4V"/>
+                                                <constraint firstItem="Hll-08-Gan" firstAttribute="centerX" secondItem="wPa-qT-8JB" secondAttribute="centerX" id="c02-LY-Vsp"/>
+                                                <constraint firstItem="4Mf-QW-3p1" firstAttribute="centerX" secondItem="Hll-08-Gan" secondAttribute="centerX" id="rvL-40-O0K"/>
+                                                <constraint firstItem="4Mf-QW-3p1" firstAttribute="top" secondItem="Hll-08-Gan" secondAttribute="bottom" id="wJD-pM-f4j"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="6Ox-uy-OKu"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="4Mf-QW-3p1" firstAttribute="width" relation="lessThanOrEqual" secondItem="KIf-y6-kAN" secondAttribute="width" multiplier="1:1" id="CMr-7m-6lr"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="gifImageView" destination="Hll-08-Gan" id="EMb-yx-3QB"/>
+                                            <outlet property="slugLabel" destination="4Mf-QW-3p1" id="S25-VS-Far"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
