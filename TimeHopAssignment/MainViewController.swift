@@ -10,19 +10,18 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet var tableView: UITableView!
     var gifImagesArray: [GIFImage]?
-    let searchController = UISearchController(searchResultsController: nil)
-    
+    var filteredGifResults = [GIFImage]()
+    var searchController: UISearchController!
+    var cache: NSCache = NSCache()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+        configureSearchController()
         
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         activityIndicator.center = view.center
@@ -38,7 +37,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 })
             }
         }
-
+    }
+    
+    func configureSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.sizeToFit()
+        self.definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
     }
     
     //MARK: TableViewDataSource Protocol Methods
@@ -50,26 +59,41 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.active && searchController.searchBar.text?.characters.count > 0 {
+            return filteredGifResults.count
+        }
+        
         return gifImagesArray!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TrendingTableViewCell
+        cell.gifImageView.image = nil
+        var gifForRow: GIFImage?
         
-        let gifForRow = gifImagesArray![indexPath.row]
-        cell.slugLabel.text = gifForRow.slug
+        if searchController.active && searchController.searchBar.text?.characters.count > 0 {
+            gifForRow = filteredGifResults[indexPath.row]
+        } else {
+            gifForRow = gifImagesArray![indexPath.row]
+        }
         
-        let imageURLString = gifForRow.urlString
-//        print("width " + gifForRow.width!)
-//        print("height " + gifForRow.height!)
+        cell.slugLabel.text = gifForRow!.slug
         cell.tag = indexPath.row
-        Alamofire.request(.GET, imageURLString).responseData { (response) in
-            if let data = response.data {
-                dispatch_async(dispatch_get_main_queue(),{
+        let imageURLString = gifForRow!.urlString
+        if cache.objectForKey("\(imageURLString)") != nil{
+            let data = cache.objectForKey("\(imageURLString)") as! NSData
+            cell.gifImageView.animateWithImageData(data)
+        } else {
+            Alamofire.request(.GET, imageURLString).responseData { (response) in
+                if let data = response.data {
+                    self.cache.setObject(data, forKey: "\(imageURLString)")
                     if cell.tag == indexPath.row {
-                        cell.gifImageView.animateWithImageData(data)
+                        dispatch_async(dispatch_get_main_queue(),{
+                            cell.gifImageView.image = nil
+                            cell.gifImageView.animateWithImageData(data)
+                        })
                     }
-                })
+                }
             }
         }
         return cell
@@ -98,7 +122,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 }
 
 extension MainViewController: UISearchResultsUpdating {
+    
+    //MARK: UISearchResultsUpdating Protocol
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        print(searchController.searchBar.text)
+        let filteredArray = gifImagesArray!.filter { (gif: GIFImage) -> Bool in
+            return gif.slug!.lowercaseString.hasPrefix(searchController.searchBar.text!.lowercaseString)
+        }
+        filteredGifResults = filteredArray
+        self.tableView.reloadData()
     }
 }
 
